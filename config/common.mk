@@ -26,23 +26,23 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Backup Tool
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
-    vendor/slim/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
-    vendor/slim/prebuilt/common/bin/50-slim.sh:system/addon.d/50-slim.sh \
-    vendor/slim/prebuilt/common/bin/99-backup.sh:system/addon.d/99-backup.sh \
-    vendor/slim/prebuilt/common/etc/backup.conf:system/etc/backup.conf
+    vendor/evolution/prebuilt/common/bin/backuptool.sh:system/bin/backuptool.sh \
+    vendor/evolution/prebuilt/common/bin/backuptool.functions:system/bin/backuptool.functions \
+    vendor/evolution/prebuilt/common/bin/50-evolution.sh:system/addon.d/50-evolution.sh \
+    vendor/evolution/prebuilt/common/bin/99-backup.sh:system/addon.d/99-backup.sh \
+    vendor/evolution/prebuilt/common/etc/backup.conf:system/etc/backup.conf
 
-# SLIM-specific init file
+# EVOLUTION-specific init file
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/common/etc/init.local.rc:root/init.slim.rc
+    vendor/evolution/prebuilt/common/etc/init.local.rc:root/init.evolution.rc
 
 # Copy latinime for gesture typing
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so
+    vendor/evolution/prebuilt/common/lib/libjni_latinime.so:system/lib/libjni_latinime.so
 
 # SELinux filesystem labels
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/common/etc/init.d/50selinuxrelabel:system/etc/init.d/50selinuxrelabel
+    vendor/evolution/prebuilt/common/etc/init.d/50selinuxrelabel:system/etc/init.d/50selinuxrelabel
 
 # Enable SIP+VoIP on all targets
 PRODUCT_COPY_FILES += \
@@ -50,17 +50,17 @@ PRODUCT_COPY_FILES += \
 
 # Don't export PS1 in /system/etc/mkshrc.
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/common/etc/mkshrc:system/etc/mkshrc \
-    vendor/slim/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf
+    vendor/evolution/prebuilt/common/etc/mkshrc:system/etc/mkshrc \
+    vendor/evolution/prebuilt/common/etc/sysctl.conf:system/etc/sysctl.conf
 
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
-    vendor/slim/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit \
-    vendor/slim/prebuilt/common/bin/sysinit:system/bin/sysinit
+    vendor/evolution/prebuilt/common/etc/init.d/00banner:system/etc/init.d/00banner \
+    vendor/evolution/prebuilt/common/etc/init.d/90userinit:system/etc/init.d/90userinit \
+    vendor/evolution/prebuilt/common/bin/sysinit:system/bin/sysinit
 
 # Workaround for NovaLauncher zipalign fails
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/common/app/NovaLauncher.apk:system/app/NovaLauncher.apk
+    vendor/evolution/prebuilt/common/app/NovaLauncher.apk:system/app/NovaLauncher.apk
 
 # Embed SuperUser
 SUPERUSER_EMBEDDED := true
@@ -114,7 +114,7 @@ PRODUCT_PACKAGES += \
 # easy way to extend to add more packages
 -include vendor/extra/product.mk
 
-PRODUCT_PACKAGE_OVERLAYS += vendor/slim/overlay/common
+PRODUCT_PACKAGE_OVERLAYS += vendor/evolution/overlay/common
 
 # Boot animation include
 ifneq ($(TARGET_SCREEN_WIDTH) $(TARGET_SCREEN_HEIGHT),$(space))
@@ -128,7 +128,7 @@ TARGET_BOOTANIMATION_SIZE := $(shell \
   fi )
 
 # get a sorted list of the sizes
-bootanimation_sizes := $(subst .zip,, $(shell ls vendor/slim/prebuilt/common/bootanimation))
+bootanimation_sizes := $(subst .zip,, $(shell ls vendor/evolution/prebuilt/common/bootanimation))
 bootanimation_sizes := $(shell echo -e $(subst $(space),'\n',$(bootanimation_sizes)) | sort -rn)
 
 # find the appropriate size and set
@@ -145,11 +145,11 @@ endef
 $(foreach size,$(bootanimation_sizes), $(call check_and_set_bootanimation,$(size)))
 
 PRODUCT_COPY_FILES += \
-    vendor/slim/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip:system/media/bootanimation.zip
+    vendor/evolution/prebuilt/common/bootanimation/$(TARGET_BOOTANIMATION_NAME).zip:system/media/bootanimation.zip
 endif
 
 # Versioning System
-# KitKat SlimKat freeze code
+# KitKat Evolution freeze code
 PRODUCT_VERSION_MAJOR = 4.4.3
 PRODUCT_VERSION_MINOR = build
 PRODUCT_VERSION_MAINTENANCE = 1.0
