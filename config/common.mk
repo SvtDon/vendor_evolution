@@ -163,4 +163,5 @@ else
 endif
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.evolution.version=$(EVOLUTION_VERSION)
+    ro.evolution.version=$(EVOLUTION_VERSION) \
+    ro.evolution.buildtype=$(EVOLUTION_BUILD_TYPE)
