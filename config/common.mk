@@ -67,6 +67,7 @@ SUPERUSER_EMBEDDED := true
 
 # Required packages
 PRODUCT_PACKAGES += \
+    Camera \
     CellBroadcastReceiver \
     Development \
     SpareParts \
